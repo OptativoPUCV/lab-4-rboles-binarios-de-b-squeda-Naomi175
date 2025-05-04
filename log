@@ -38,3 +38,19 @@ do.,  4 de may. de 2025 12:57:20:
  tests:  15|4
 total_score: 25/70
 95b9feb
+do.,  4 de may. de 2025 13:19:56: 
+ treemap.c | 48 +++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 39 insertions(+), 9 deletions(-)
+Compilation failed
+In file included from test.c:4:0:
+treemap.c: In function 'insertTreeMap':
+treemap.c:83:15: error: statement with no effect [-Werror=unused-value]
+     n->parent >= padre;
+     ~~~~~~~~~~^~~~~~~~
+treemap.c: In function 'removeNode':
+treemap.c:153:26: error: implicit declaration of function 'minimun' [-Werror=implicit-function-declaration]
+         TreeNode * min = minimun(node->right);
+                          ^~~~~~~
+treemap.c:153:26: error: initialization makes pointer from integer without a cast [-Werror=int-conversion]
+cc1.exe: all warnings being treated as errors
+f5399f0

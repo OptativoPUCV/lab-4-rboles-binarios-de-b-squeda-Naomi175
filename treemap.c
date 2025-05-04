@@ -73,21 +73,18 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
         else aux = aux->right;
     }
     //Se crea el nuevo nodo  y se enlaza.
-    TreeNode* n = (TreeNode*)malloc(sizeof(TreeNode));
+    TreeNode * n = createTreeNode(key, value);
+    /*TreeNode* n = (TreeNode*)malloc(sizeof(TreeNode));
     n->pair = (Pair*)malloc(sizeof(Pair));
     n->pair->key = key;
     n->pair->value = value;
     n->left = n->right = NULL;
-    n->parent = padre;
-
-    // Enlazamos el nodo al árbol
-    if (tree->lower_than(key, padre->pair->key)) {
+    n->parent = padre;*/
+    n->parent >= padre;
+    if (tree->lower_than(key, padre->pair->key))
         padre->left = n;
-    } else {
+    else 
         padre->right = n;
-    }
-
-    // Actualizamos el puntero current
     tree->current = n;
 
     /*TreeNode * n = createTreeNode(key, value);
@@ -124,6 +121,39 @@ la función minimum). Reemplace los datos (key,value) de *node* con los del nodo
 Elimine el nodo minimum (para hacerlo puede usar la misma función *removeNode*).
 */
 void removeNode(TreeMap * tree, TreeNode* node) {
+    //SIN HIJOS
+    if (node->left == NULL && node->right == NULL) {
+        if (node->parent == NULL)
+            tree->root = NULL;
+        else if (node->parent->left == node)
+            node->parent->left = NULL;
+        else
+            node->parent->right = NULL;
+        free(node->pair);
+        free(node);
+    } //UN HIJO
+    else if (node->left == NULL || node->right == NULL) {
+        TreeNode* child;
+        if (node->left != NULL) 
+            child = node->left;
+        else 
+            child = node->right;
+        
+        child->parent = node->parent;
+        if (node->parent == NULL)
+            tree->root = child;
+        else if (node->parent->left == node)
+            node->parent->left = child;
+        else
+            node->parent->right = child;
+        free(node->pair);
+        free(node);
+    } //DOS HIJOS
+    else {
+        TreeNode * min = minimun(node->right);
+        node->pair = min->pair;
+        removeNode(tree, min);
+    }
 
 }
 
