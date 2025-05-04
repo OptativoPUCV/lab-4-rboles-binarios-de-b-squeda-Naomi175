@@ -193,5 +193,24 @@ Pair * firstTreeMap(TreeMap * tree) {
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
-    return NULL;
+    if (tree->current == NULL) return NULL;
+    TreeNode * current = tree->current;
+
+    //Si el current tiene hijo derecho.
+    if (current->right != NULL) {
+        TreeNode * aux = current->right;
+        while (aux->left !=NULL)
+            aux = aux->left;
+        tree->current = aux;
+        return aux->pair;
+    }
+    //Si el current no tiene hijo derecho.
+    TreeNode * aux = current->parent;
+    while (aux != NULL && aux->pair->key != NULL && tree->lower_than(current->pair->key, aux->pair->key) == 0) {
+        current = aux;
+        aux = aux->parent;
+    }
+    tree->current = aux;
+    
+    return aux->pair;
 }
