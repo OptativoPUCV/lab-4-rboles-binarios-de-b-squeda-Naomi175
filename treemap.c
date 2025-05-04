@@ -72,31 +72,14 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) {
             aux = aux->left;
         else aux = aux->right;
     }
-    //Se crea el nuevo nodo  y se enlaza.
+    //Se crea el nuevo nodo y se enlaza.
     TreeNode * n = createTreeNode(key, value);
-    /*TreeNode* n = (TreeNode*)malloc(sizeof(TreeNode));
-    n->pair = (Pair*)malloc(sizeof(Pair));
-    n->pair->key = key;
-    n->pair->value = value;
-    n->left = n->right = NULL;
-    n->parent = padre;*/
-    n->parent >= padre;
+    n->parent = padre;
     if (tree->lower_than(key, padre->pair->key))
         padre->left = n;
     else 
         padre->right = n;
     tree->current = n;
-
-    /*TreeNode * n = createTreeNode(key, value);
-    n->parent = padre;
-
-    if (padre == NULL) 
-        tree->root = n;
-    else if (tree->lower_than(key, padre->pair->key))
-        padre->left = n;
-    else padre->right = n; 
-
-    tree->current = n;*/
 }
 
 
