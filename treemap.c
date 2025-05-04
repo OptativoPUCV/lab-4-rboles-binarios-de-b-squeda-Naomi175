@@ -41,9 +41,12 @@ TreeNode * createTreeNode(void* key, void * value) {
 El siguiente código muestra como inicializar la función de comparación. Reserve memoria, 
 inicialice el resto de variables y retorne el mapa.*/
 TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
-
-    //new->lower_than = lower_than;
-    return NULL;
+    TreeMap * mapa = (TreeMap *) malloc(sizeof(TreeMap));
+    if (mapa == NULL) return NULL; //Por si falla el malloc.
+    mapa->root = NULL;
+    mapa->current = NULL;
+    mapa->lower_than = lower_than;
+    return mapa;
 }
 
 /*3.- Implemente la función void insertTreeMap(TreeMap * tree, void* key, void * value). 
