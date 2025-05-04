@@ -133,7 +133,7 @@ void removeNode(TreeMap * tree, TreeNode* node) {
         free(node);
     } //DOS HIJOS
     else {
-        TreeNode * min = minimun(node->right);
+        TreeNode * min = minimum(node->right);
         node->pair = min->pair;
         removeNode(tree, min);
     }
