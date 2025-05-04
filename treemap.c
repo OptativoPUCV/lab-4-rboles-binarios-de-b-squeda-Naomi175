@@ -6,6 +6,11 @@
 typedef struct TreeNode TreeNode;
 
 
+/*typedef struct Pair {
+        void * key;
+        void * value;
+    } Pair;*/
+
 struct TreeNode {
     Pair* pair;
     TreeNode * left;
@@ -97,6 +102,17 @@ el nodo con clave igual a key y retorna el **Pair** asociado al nodo. Si no se e
 la clave retorna NULL.
 Recuerde hacer que el current apunte al nodo encontrado.*/
 Pair * searchTreeMap(TreeMap * tree, void* key) {
+    TreeNode * aux = tree->root;
+    while (aux != NULL) {
+        if (is_equal(tree, key, aux->pair->key)) {
+            tree->current = aux;
+            return aux->pair;
+        } else if (tree->lower_than(key, aux->pair->key)) {
+            aux = aux->left;
+        } else {
+            aux = aux->right;
+        }
+    }
     return NULL;
 }
 
